@@ -1,4 +1,4 @@
-mport sys
+import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
 from PyQt5 import uic
 from PyQt5.QtGui import QFont
@@ -34,17 +34,24 @@ class Ventana(QMainWindow):
   qfont = QFont("Arial", 12, QFont.Bold)
   self.setFont(qfont)
   #Asignar un tipo de cursor
-  self.setCursor(Qt.SizeAllCursor)
+  self.setCursor(Qt.ArrowCursor)
   #Asignar estilos CSS
   #self.setStyleSheet("background-color: #000; color: #fff;")
   #Modificar estilos de uno de los elementos de la ventana
   self.boton.setStyleSheet("background-color: #000; color: #fff; font-size: 14px;")
   
-
-
-
-
-
+ def showEvent(self,event):
+     self.bienvenido.setText("Bienvenido....\!")
+ def closeEvent(self, event):
+     resultado=QMessageBox.question(self,"Salir","seguro que quieres salie",QMessageBox.Yes,QMessageBox.No)
+     if (resultado ==QMessageBox.Yes):event.accept()
+     else:event.igmore()
+ def moveEvent(self, event):
+     x=str(event.pos().x())
+     y=str(event.pos().y())
+     self.posicion.setText("X:"+x+"y:"+y)
+     print(x+"<<x")
+     print(y+"<<")
 
 
 
